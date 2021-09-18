@@ -16,4 +16,9 @@ describe('Umi', () => {
     // await console.log(umi.getOwner());
     expect(await umi.getOwner()).to.equal(await owner.address);
   });
+
+  it('Minting a token gets back an expected token id', async () => {
+    const token = await umi.create();
+    expect(token).to.equal(1);
+  });
 });

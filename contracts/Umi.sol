@@ -1,9 +1,9 @@
 //SPDX-License-Identifier: Unlicense
 pragma solidity ^0.8.0;
 
+import "hardhat/console.sol";
 import "base64-sol/base64.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-// import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
@@ -19,10 +19,10 @@ contract Umi is ERC721URIStorage, Ownable{
     }
 
     string[4] public adviceList = [
-        unicode"Remember who you are.",
+        unicode"Remember who you are's.",
         unicode"Enthusiasm is worth 25 IQ points.",
-        unicode"Forgive.",
-        unicode"Cut away from yourself."
+        unicode"Forgiveasdf asdf adsf asf as.",
+        unicode"Cut away from yours dasf asd fs a f;sadf -sad f-sa f1 3$ elf."
     ];
     
     //returns a random piece of advice as a string
@@ -39,7 +39,7 @@ contract Umi is ERC721URIStorage, Ownable{
 
     //returns random num between 10 and 125
     function randomRadius() public view returns (string memory){
-        return uint2str((uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, umi))) % 115) + 10);
+        return uint2str(uint256(keccak256(abi.encodePacked(block.difficulty, block.timestamp, umi))) % 115 + 10);
     }
 
     function randomNumCircle() public view returns (uint){
@@ -70,19 +70,24 @@ contract Umi is ERC721URIStorage, Ownable{
     }
 
     function svgMaker() private view returns (string memory finalSvg){
-        finalSvg = string(abi.encodePacked("<svg width="'350'" height="'350'" viewBox="'0 0 350 350'" fill="'none'" xmlns='http://www.w3.org/2000/svg'><style>.base { fill: white; font-family: sans-serif; font-size: 14px; }</style>"));
+        finalSvg = string(abi.encodePacked('<svg width="350" height="350" fill="none" xmlns=http://www.w3.org/2000/svg>'));
+        finalSvg = string(abi.encodePacked(finalSvg, '<style>.base { fill: white; font-family: sans-serif; font-size: 14px; }</style>'));
 
-        for(uint i = 0; i < randomNumCircle(); i++) {
+        for(uint i = 0; i < 2; i++) {
             // we get a new random number for each path
             string memory circleSvg = generateCircle();
             finalSvg = string(abi.encodePacked(finalSvg, circleSvg));
         }
-        string memory text = string(abi.encodePacked("<text x="'50%'" y="'50%'" dominant-baseline="'middle'" text-anchor="'middle'" class="'base'">", generateAdvice() ,"</text>"));
-        finalSvg = string(abi.encodePacked(finalSvg, text, "</svg>"));
+        string memory advice = generateAdvice();
+        string memory text = string(abi.encodePacked('<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="base">"', advice ,'</text>'));
+        finalSvg = string(abi.encodePacked(finalSvg, text, '</svg>'));
     }
 
     function generateCircle() private view returns (string memory) {
-        string memory circleSvg = string(abi.encodePacked("<g filter="'url(#filter0_i)'"><circle cx='", randomCoord(1),"' cy='", randomCoord(2) ,"' r='", randomRadius(),"' fill="'#FFCA42'"/></g>"));
+        string memory cx = randomCoord(1);
+        string memory cy = randomCoord(2);
+        string memory r = randomRadius();
+        string memory circleSvg = string(abi.encodePacked('<g><circle cx=', cx,' cy=', cy ,' r=', r,' fill="#FFCA42"/></g>'));
         return circleSvg;
     }
 
@@ -104,14 +109,14 @@ contract Umi is ERC721URIStorage, Ownable{
 
     function createNFT() public onlyOwner returns (uint256){
         _tokenIds.increment();
-        uint256 newAdvice = _tokenIds.current();
+        uint256 adviceToken = _tokenIds.current();
 
         string memory newSvg = svgMaker();
         string memory imageURI = svgToImageURI(newSvg);
-        _setTokenURI(newAdvice, formatTokenURI(imageURI));
+        _setTokenURI(adviceToken, formatTokenURI(imageURI));
         
-        _safeMint(umi, newAdvice);
-        return newAdvice;
+        _safeMint(umi, adviceToken);
+        return adviceToken;
     }
  
 }

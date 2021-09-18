@@ -20,13 +20,14 @@ task('accounts', 'Prints the list of accounts', async (taskArgs, hre) => {
 /**
  * @type import('hardhat/config').HardhatUserConfig
  */
+
 module.exports = {
-  defaultNetwork: 'localhost',
+  defaultNetwork: 'hardhat',
   networks: {
     hardhat: {},
     rinkeby: {
       url: RINKEBY_RPC_URL,
-      accounts: PRIVATE_KEY,
+      accounts: [PRIVATE_KEY],
     },
   },
   solidity: '0.8.4',

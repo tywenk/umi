@@ -76,5 +76,5 @@ typings/
 .fusebox/
 
 #hardhat
-artifacts
-cache
+artifacts/
+cache/
