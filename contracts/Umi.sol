@@ -12,17 +12,17 @@ contract Umi is ERC721URIStorage, Ownable{
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
-    address umi;
+    address public umi;
 
     constructor(address _umi) ERC721("Umi", "UMI") Ownable(){
         umi = _umi;
     }
 
     string[4] public adviceList = [
-        unicode"Remember who you are's.",
+        unicode"Your mother is right.",
         unicode"Enthusiasm is worth 25 IQ points.",
-        unicode"Forgiveasdf asdf adsf asf as.",
-        unicode"Cut away from yours dasf asd fs a f;sadf -sad f-sa f1 3$ elf."
+        unicode"Strict with yourself, forgiving of others.",
+        unicode"Be the elf"
     ];
     
     //returns a random piece of advice as a string
@@ -70,8 +70,8 @@ contract Umi is ERC721URIStorage, Ownable{
     }
 
     function svgMaker() private view returns (string memory finalSvg){
-        finalSvg = string(abi.encodePacked('<svg width="350" height="350" fill="none" xmlns=http://www.w3.org/2000/svg>'));
-        finalSvg = string(abi.encodePacked(finalSvg, '<style>.base { fill: white; font-family: sans-serif; font-size: 14px; }</style>'));
+        finalSvg = string(abi.encodePacked('<svg width="350" height="350" fill= "none" xmlns="http://www.w3.org/2000/svg">'));
+        finalSvg = string(abi.encodePacked(finalSvg, '<style>.base { fill: black; font-family: sans-serif; font-size: 14px; }</style>'));
 
         for(uint i = 0; i < 2; i++) {
             // we get a new random number for each path
@@ -79,7 +79,7 @@ contract Umi is ERC721URIStorage, Ownable{
             finalSvg = string(abi.encodePacked(finalSvg, circleSvg));
         }
         string memory advice = generateAdvice();
-        string memory text = string(abi.encodePacked('<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="base">"', advice ,'</text>'));
+        string memory text = string(abi.encodePacked('<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="base">', advice ,'</text>'));
         finalSvg = string(abi.encodePacked(finalSvg, text, '</svg>'));
     }
 
@@ -87,7 +87,7 @@ contract Umi is ERC721URIStorage, Ownable{
         string memory cx = randomCoord(1);
         string memory cy = randomCoord(2);
         string memory r = randomRadius();
-        string memory circleSvg = string(abi.encodePacked('<g><circle cx=', cx,' cy=', cy ,' r=', r,' fill="#FFCA42"/></g>'));
+        string memory circleSvg = string(abi.encodePacked('<g><circle cx=\"', cx,'\" cy=\"', cy ,'\" r=\"', r,'\" fill="#FFCA42"/></g>'));
         return circleSvg;
     }
 
@@ -111,11 +111,13 @@ contract Umi is ERC721URIStorage, Ownable{
         _tokenIds.increment();
         uint256 adviceToken = _tokenIds.current();
 
+        console.log(adviceToken);
+
         string memory newSvg = svgMaker();
         string memory imageURI = svgToImageURI(newSvg);
+        _safeMint(umi, adviceToken);
         _setTokenURI(adviceToken, formatTokenURI(imageURI));
         
-        _safeMint(umi, adviceToken);
         return adviceToken;
     }
  

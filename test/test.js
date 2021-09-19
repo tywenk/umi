@@ -7,18 +7,21 @@ describe('Umi', () => {
 
   beforeEach(async () => {
     const Umi = await ethers.getContractFactory('Umi');
-    umi = await Umi.deploy();
+    umi = await Umi.deploy('0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266');
     await umi.deployed();
     [owner] = await ethers.getSigners();
   });
 
   it('Owner should be same as signer', async () => {
     // await console.log(umi.getOwner());
-    expect(await umi.getOwner()).to.equal(await owner.address);
+
+    expect(await umi.umi()).to.equal(await owner.address);
   });
 
-  it('Minting a token gets back an expected token id', async () => {
-    const token = await umi.create();
-    expect(token).to.equal(1);
+  it('Does creating NFT return a URI token', async () => {
+    let created = await umi.createNFT();
+    let tokenuri = await umi.tokenURI(1);
+    console.log(`You can view the tokenURI here ${tokenuri}`);
+    expect(tokenuri).to.be.ok;
   });
 });
