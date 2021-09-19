@@ -70,10 +70,10 @@ contract Umi is ERC721URIStorage, Ownable{
     }
 
     function svgMaker() private view returns (string memory finalSvg){
-        finalSvg = string(abi.encodePacked('<svg width="350" height="350" fill= "none" xmlns="http://www.w3.org/2000/svg">'));
+        finalSvg = string(abi.encodePacked('<svg width="350" height="350" fill= "white" xmlns="http://www.w3.org/2000/svg">'));
         finalSvg = string(abi.encodePacked(finalSvg, '<style>.base { fill: black; font-family: sans-serif; font-size: 14px; }</style>'));
 
-        for(uint i = 0; i < 2; i++) {
+        for(uint i = 0; i < 4; i++) {
             // we get a new random number for each path
             string memory circleSvg = generateCircle();
             finalSvg = string(abi.encodePacked(finalSvg, circleSvg));
