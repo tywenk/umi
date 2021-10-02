@@ -1,7 +1,4 @@
-let {
-  networkConfig,
-  getNetworkIdFromName,
-} = require('../helper-hardhat-config');
+let { networkConfig } = require('../hardhat-help-config');
 
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy, log } = deployments;
@@ -12,7 +9,7 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   const umi = await deploy('Umi', {
     from: deployer,
-    args: ['0x840cAF48A5c5131467423f72CdaeDAC30FD0b4c2'], //change this to be Umi's wallet
+    args: [deployer], //change this to be Umi's wallet
     log: true,
   });
 
@@ -26,14 +23,9 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     } ${umi.args.toString().replace(/,/g, ' ')}`
   );
 
-  // const UmiContract = await ethers.getContractFactory('Umi');
   // const accounts = await hre.ethers.getSigners();
   // const signer = accounts[0];
-  // const umiContract = new ethers.Contract(
-  //   UmiContract.address,
-  //   UmiContract.interface,
-  //   signer
-  // );
+  // const umiContract = new ethers.Contract(umi.address, umi.interface, signer);
 
   // //this auto-creates an nft on deploy
   // log("Let's create an NFT now!");

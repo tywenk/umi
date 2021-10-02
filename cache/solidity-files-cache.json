@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/tywen/Documents/Github/blockchain/umi/contracts/Umi.sol": {
-      "lastModificationDate": 1632078661384,
-      "contentHash": "f33acb1a8cc57bdc7429768c1575c321",
+      "lastModificationDate": 1632346928149,
+      "contentHash": "4ef5577ed2fb974dda016448369bdfaa",
       "sourceName": "contracts/Umi.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -36,7 +36,6 @@
         }
       },
       "imports": [
-        "hardhat/console.sol",
         "base64-sol/base64.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
         "@openzeppelin/contracts/access/Ownable.sol",

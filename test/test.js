@@ -15,30 +15,25 @@ describe('Umi', () => {
   it('Owner should be same as signer', async () => {
     // await console.log(umi.getOwner());
 
-    expect(await umi.umi()).to.equal(await owner.address);
+    expect(await umi.umi()).to.equal(owner.address);
   });
 
-  // it('Does creating NFT return a URI token', async () => {
-  //   let created = await umi.createNFT();
-  //   let tokenuri = await umi.tokenURI(1);
-  //   console.log(`You can view the tokenURI here ${tokenuri}`);
-  //   expect(tokenuri).to.be.ok;
-  // });
-
-  it('I want to see tokenuri', async () => {
-    const UmiContract = await ethers.getContractFactory('Umi');
-    const accounts = await hre.ethers.getSigners();
-    const signer = accounts[0];
-    const umiContract = new ethers.Contract(
-      UmiContract.address,
-      UmiContract.interface,
-      signer
-    );
-
-    //this auto-creates an nft on deploy
-    log("Let's create an NFT now!");
-    tx = await umiContract.createNFT({ gasLimit: 2000000 });
-    await tx.wait(1);
-    await log(`You can view the tokenURI here ${await umi.tokenURI(1)}`);
+  it('Does creating NFT return a URI token', async () => {
+    for (i = 0; i < 2; i++) {
+      await umi.createNFT();
+    }
+    let tokenuri = await umi.tokenURI(1);
+    console.log(`You can view the tokenURI here ${tokenuri}`);
+    // let tokenuri20 = await umi.tokenURI(20);
+    // console.log(`You can view the tokenURI here ${tokenuri20}`);
+    // let tokenuri21 = await umi.tokenURI(21);
+    // console.log(`You can view the tokenURI here ${tokenuri21}`);
+    // let tokenuri22 = await umi.tokenURI(22);
+    // console.log(`You can view the tokenURI here ${tokenuri22}`);
+    // let tokenuri99 = await umi.tokenURI(99);
+    // console.log(`You can view the tokenURI here ${tokenuri99}`);
+    // let tokenuri100 = await umi.tokenURI(100);
+    // console.log(`You can view the tokenURI here ${tokenuri100}`);
+    expect(tokenuri).to.be.ok;
   });
 });
