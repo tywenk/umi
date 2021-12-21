@@ -134,7 +134,7 @@ contract Umi is ERC721URIStorage, Ownable{
 
     function formatTokenURI(string memory imageURI, uint bdayDay) private view returns (string memory) {
         string memory day;
-        if (bdayDay <= 19){
+        if (bdayDay <= 19){ 
             day = bdayCount[bdayDay];
         } else if (bdayDay >= 20 && bdayDay <= 99) {
             uint bdayDayB = bdayDay / 10;

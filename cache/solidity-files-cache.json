@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/tywen/Documents/Github/blockchain/umi/contracts/Umi.sol": {
-      "lastModificationDate": 1632346928149,
-      "contentHash": "4ef5577ed2fb974dda016448369bdfaa",
+      "lastModificationDate": 1633200440268,
+      "contentHash": "f87c0872d48433485c3dc30137c94e2a",
       "sourceName": "contracts/Umi.sol",
       "solcConfig": {
         "version": "0.8.4",
@@ -46,48 +46,6 @@
       ],
       "artifacts": [
         "Umi"
-      ]
-    },
-    "/Users/tywen/Documents/Github/blockchain/umi/node_modules/hardhat/console.sol": {
-      "lastModificationDate": 1631738264721,
-      "contentHash": "cc4777addd464ea56fa35b1c45df0591",
-      "sourceName": "hardhat/console.sol",
-      "solcConfig": {
-        "version": "0.8.4",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata",
-                "devdoc",
-                "userdoc",
-                "storageLayout",
-                "evm.gasEstimates"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          },
-          "metadata": {
-            "useLiteralContent": true
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        ">=0.4.22 <0.9.0"
-      ],
-      "artifacts": [
-        "console"
       ]
     },
     "/Users/tywen/Documents/Github/blockchain/umi/node_modules/base64-sol/base64.sol": {
