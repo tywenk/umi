@@ -1,15 +1,5 @@
-# Basic Sample Hardhat Project
+# Umi
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, a sample script that deploys that contract, and an example of a task implementation, which simply lists the available accounts.
+This is a simple ERC-721 minting contract that allows me to manually mint an on-chain SVG to for my neice Umi on her birthday.
 
-Try running some of the following tasks:
-
-```shell
-npx hardhat accounts
-npx hardhat compile
-npx hardhat clean
-npx hardhat test
-npx hardhat node
-node scripts/sample-script.js
-npx hardhat help
-```
+Each SVG contains a piece of wisdom plucked from a [list](https://kk.org/thetechnium/68-bits-of-unsolicited-advice/) of unsolicited advice shared by my dad. I think of this contract as a long-term gifting medium, allowing our family's knowledge and learnings to pass onto the next generation.
